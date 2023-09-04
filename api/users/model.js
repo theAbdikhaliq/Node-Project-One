@@ -1,7 +1,7 @@
 // DO NOT MAKE CHANGES TO THIS FILE
 // DO NOT MAKE CHANGES TO THIS FILE
 // DO NOT MAKE CHANGES TO THIS FILE
-const { nanoid } = require('nanoid')
+import { nanoid } from 'nanoid'
 
 function getId() {
   return nanoid().slice(0, 5)
@@ -16,25 +16,25 @@ const initializeUsers = () => ([
 let users = initializeUsers()
 
 // DATABASE ACCESS FUNCTIONS
-const find = () => {
+export const find = () => {
   // SELECT * FROM users;
   return Promise.resolve(users)
 }
 
-const findById = id => {
+export const findById = id => {
   // SELECT * FROM users WHERE id = 1;
   const user = users.find(d => d.id === id)
   return Promise.resolve(user)
 }
 
-const insert = ({ name, bio }) => {
+export const insert = ({ name, bio }) => {
   // INSERT INTO users (name, bio) VALUES ('foo', 'bar');
   const newUser = { id: getId(), name, bio }
   users.push(newUser)
   return Promise.resolve(newUser)
 }
 
-const update = (id, changes) => {
+export const update = (id, changes) => {
   // UPDATE users SET name = 'foo', bio = 'bar WHERE id = 1;
   const user = users.find(user => user.id === id)
   if (!user) return Promise.resolve(null)
@@ -44,20 +44,11 @@ const update = (id, changes) => {
   return Promise.resolve(updatedUser)
 }
 
-const remove = id => {
+export const remove = id => {
   // DELETE FROM users WHERE id = 1;
   const user = users.find(user => user.id === id)
   if (!user) return Promise.resolve(null)
 
   users = users.filter(d => d.id !== id)
   return Promise.resolve(user)
-}
-
-
-module.exports = {
-  find,
-  findById,
-  insert,
-  update,
-  remove
 }

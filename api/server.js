@@ -1,3 +1,14 @@
-// BUILD YOUR SERVER HERE
+// Initialize express app
 
-module.exports = {}; // EXPORT YOUR SERVER instead of {}
+// GET ALL USERS
+
+// GET USER BY ID
+
+// CREATE A NEW USER
+
+// UPDATE A USER
+
+// DELETE A USER
+
+// export default app
+export default app;
